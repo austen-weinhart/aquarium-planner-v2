@@ -17,7 +17,10 @@
 
     <!-- List of Fish -->
     <p><strong>Select Your Fish</strong></p>
-    <p><%= f.collection_check_boxes :fish_ids, Fish.all, :id, :name, :style => "display: block;" %></p>
+    <p><%= f.collection_check_boxes :fish_ids, Fish.all, :id, :name  do |b| %>
+  <%= b.label(class: "label_box") { b.check_box(class: "check_box")  + b.text  } %>
+<% end%>
+</p>
     <br>
     <%= f.submit "Save", class: "btn btn-success" %>
 
