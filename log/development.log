@@ -46127,3 +46127,74 @@ Completed 200 OK in 456ms (Views: 144.0ms | ActiveRecord: 0.3ms)
 
 
 Started GET "/assets/water-texture.jpg" for ::1 at 2015-04-24 10:22:55 -0700
+  [1m[36m (3.7ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL) [0m
+  [1m[35m (1.0ms)[0m  CREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateUsers (20150414180236)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (3.2ms)[0m  [1mCREATE TABLE "users" ("id" serial primary key, "name" character varying, "email" character varying, "about" text, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150414180236"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+Migrating to CreateAquaria (20150414180602)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (2.2ms)[0m  [1mCREATE TABLE "aquaria" ("id" serial primary key, "title" character varying, "description" text, "user_id" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (0.6ms)[0m  CREATE  INDEX  "index_aquaria_on_user_id" ON "aquaria"  ("user_id")
+  [1m[36m (1.2ms)[0m  [1mALTER TABLE "aquaria" ADD CONSTRAINT "fk_rails_b1b9b5ad94"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150414180602"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+Migrating to CreateFish (20150414190310)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (2.9ms)[0m  [1mCREATE TABLE "fish" ("id" serial primary key, "aquarium_id" integer, "name" character varying, "dwarf_angels" character varying, "large_angels" character varying, "anglers_frogs" character varying, "anthias" character varying, "basslets" character varying, "batfish" character varying, "blennies" character varying, "boxfish" character varying, "butterflies" character varying, "cardinals" character varying, "chromis" character varying, "clownfish" character varying, "damsels" character varying, "dartfish" character varying, "dragonets" character varying, "eels" character varying, "filefish" character varying, "foxface_rabbits" character varying, "gobies" character varying, "groupers" character varying, "grunts_sweetlips" character varying, "jawfish" character varying, "hawkfish" character varying, "hogfish" character varying, "lions_scorpions" character varying, "parrotfish" character varying, "pseudochromis" character varying, "puffers" character varying, "seahorse_pipefish" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (0.7ms)[0m  CREATE  INDEX  "index_fish_on_aquarium_id" ON "fish"  ("aquarium_id")
+  [1m[36m (0.8ms)[0m  [1mALTER TABLE "fish" ADD CONSTRAINT "fk_rails_1e0e2d4511"
+FOREIGN KEY ("aquarium_id")
+  REFERENCES "aquaria" ("id")
+[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150414190310"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+Migrating to AddSquirrelfishToFish (20150417002520)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.7ms)[0m  [1mALTER TABLE "fish" ADD "sharks_rays" character varying[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "fish" ADD "squirrelfish" character varying
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "fish" ADD "tangs_surgeons" character varying[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "fish" ADD "triggerfish" character varying
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "fish" ADD "wrasse_reef_safe" character varying[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "fish" ADD "wrasse_fish_only" character varying
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "fish" ADD "live_corals" character varying[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "fish" ADD "invertebrates" character varying
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "fish" ADD "live_rock_sand" character varying[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150417002520"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+Migrating to AddPasswordDigestToUsers (20150422013354)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "users" ADD "password_digest" character varying[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150422013354"]]
+  [1m[36m (0.8ms)[0m  [1mCOMMIT[0m
+Migrating to AddWikiUrlToFish (20150422023649)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "fish" ADD "wiki_url" character varying[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150422023649"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+Migrating to CreateJointFishesAquariaTable (20150423185714)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.5ms)[0m  [1mCREATE TABLE "aquaria_fishes" ("fish_id" integer NOT NULL, "aquarium_id" integer NOT NULL) [0m
+  [1m[35m (0.7ms)[0m  CREATE  INDEX  "index_aquaria_fishes_on_fish_id" ON "aquaria_fishes"  ("fish_id")
+  [1m[36m (0.6ms)[0m  [1mCREATE  INDEX  "index_aquaria_fishes_on_aquarium_id" ON "aquaria_fishes"  ("aquarium_id")[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150423185714"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+Migrating to CreateJoinTableAquariaFishes (20150423190848)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (1.7ms)[0m  [1mCREATE TABLE "aquaria_fishes" ("id" serial primary key, "aquarium_id" integer, "fish_id" integer) [0m
+PG::DuplicateTable: ERROR:  relation "aquaria_fishes" already exists
+: CREATE TABLE "aquaria_fishes" ("id" serial primary key, "aquarium_id" integer, "fish_id" integer) 
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateJoinTableAquariaFishes (20150423190848)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (2.4ms)[0m  [1mCREATE TABLE "aquaria_fishes" ("id" serial primary key, "aquarium_id" integer, "fish_id" integer) [0m
+PG::DuplicateTable: ERROR:  relation "aquaria_fishes" already exists
+: CREATE TABLE "aquaria_fishes" ("id" serial primary key, "aquarium_id" integer, "fish_id" integer) 
+  [1m[35m (0.1ms)[0m  ROLLBACK
