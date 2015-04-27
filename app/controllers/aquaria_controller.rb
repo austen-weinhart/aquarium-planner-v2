@@ -19,6 +19,7 @@ class AquariaController < ApplicationController
 
     def show
       @aquarium = Aquarium.find(params[:id])
+      @fish = Fish.find(params[:id])
     end
 
     def index
@@ -41,7 +42,7 @@ class AquariaController < ApplicationController
    def destroy
     @aquarium = Aquarium.find(params[:id])
     @aquarium.destroy
-    redirect_to aquaria_path
+    redirect_to(:back)
    end
 
     private

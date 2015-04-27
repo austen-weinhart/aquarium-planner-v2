@@ -1,6 +1,6 @@
-<h1>Plan a New Aquarium</h1>
+<h1 class="showheader">Plan a New Aquarium</h1>
 
-<div class="big">
+<div class="big col-md-6">
   <%= form_for @aquarium do |f| %>
 
     <div>
@@ -17,11 +17,10 @@
 
     <!-- List of Fish -->
     <p><strong>Select Your Fish</strong></p>
-    <p>
-      <%= f.collection_check_boxes :fish_ids, Fish.all, :id, :name  do |b| %>
-        <%= b.label(class: "label_box") { b.check_box(class: "check_box")  + b.text  } %>
-      <% end%>
-    </p>
+    <%= f.collection_check_boxes :fish_ids, Fish.all, :id, :name  do |b| %>
+      <%= b.label(class: "label_box") { b.check_box(class: "check_box")  + " " + b.text } %>
+      <!-- Need to fix More Info link -->
+    <% end%>
     <br>
     <%= f.submit "Save", class: "btn btn-success" %>
 

@@ -1,0 +1,8 @@
+<h1 class="showheader">Fish Species</h1>
+<div class="big col-md-6">
+  <ul>
+    <% @fishes.each do |fish| %>
+      <li><%= link_to fish.name, fish_path(fish), :target => "_blank" %></li>
+    <% end %>
+  </ul>
+</div>

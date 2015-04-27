@@ -8,20 +8,41 @@
 </head>
 <body>
 
-<nav>
-  <% if logged_in? %>
+<nav class="navbar">
+  <div class="container-fluid">
+    <!-- Home and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <%= link_to 'Home', root_path, :class => "navbar-brand" %> 
+    </div>
 
-        <p>Logged in as: <%= current_user.name %> | <%= link_to 'Log Out', logout_path, method: :delete %></p>
-
-  <% else %>
-
-        <div>
-          <%= link_to 'Log In', login_path %> | <%= link_to 'Sign up', signup_path %>
-        </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <% if logged_in? %>
+          <li><%= link_to 'My Aquariums', "/user/#{current_user.id}" %></li>
+        <% end %>
+        <li><%= link_to 'Browse Fish', '/fish' %></li>
+      </ul>
+   
+      <ul class="nav navbar-nav navbar-right">
+        <% if logged_in? %>
+          <li class="navbar-text">Logged in as: <%= current_user.name %></li>
+          <li><%= link_to 'Log Out', logout_path, method: :delete %></li>
+        <% else %>
+          <li><%= link_to 'Log In', login_path %></li>
+          <li><%= link_to 'Sign up', signup_path %></li>
+        <% end %>
         
-  <% end %>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
 </nav>
-
 
 <% if flash[:welcome] %>
       <h4 class="bg-success flash"><%= flash[:welcome] %></h4>

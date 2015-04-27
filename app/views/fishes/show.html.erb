@@ -6,6 +6,10 @@
 </div>
 
 <div id="compatability" class="col-sm-4 box">
+  <h2>Compatible Species</h2>
+  <h4>Y = Compatible</h4>
+  <h4>N = Not Compatible</h4>
+  <h4>C = Caution Required</h4>
   <table class="table">
     <tr>
       <th>Species</th>
@@ -13,7 +17,7 @@
     </tr>
       <% @fish.attributes.each do |species, compatability| %>
         <tr>
-          <td><%= species %></td>
+          <td><%= species.titleize %></td>
           <td><%= compatability %></td>
         </tr>
       <% end %>

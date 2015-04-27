@@ -1,14 +1,18 @@
-<h1><%= @user.name %></h1>
+<h1 class="showheader"><%= @user.name %></h1>
 
-<p><%= link_to "Plan a new aquarium!", new_aquarium_path, class: 'btn btn-lg btn-success' %></p>
+<p><%= link_to "Plan a new aquarium!", new_aquarium_path, class: 'btn btn-lg btn-success showheader' %></p>
+<%#= link_to "Edit Profile", controller: "users", action: "edit", id: @user %>
+<%#= link_to "Delete Profile", user_path(@user), method: :delete, data: {confirm: "Are you sure?"} %>
 
-<ul>
-  <% @user.aquaria.each do |aquarium| %>
-    <li>
-      <%= aquarium.title %>
-      <%= link_to "View", aquarium_path(aquarium) %>
-      <%= link_to "Edit", edit_aquarium_path(aquarium) %>
-      <%= link_to "Delete", aquarium_path(aquarium), method: :delete, data: {confirm: "Are you sure?"} %>
-    </li>
-  <% end %>
-</ul>
+<div class="big col-md-6">
+  <ul>
+    <% @user.aquaria.each do |aquarium| %>
+      <li>
+        <%= aquarium.title %>
+        <%= link_to "View", aquarium_path(aquarium) %>
+        <%= link_to "Edit", edit_aquarium_path(aquarium) %>
+        <%= link_to "Delete", aquarium_path(aquarium), method: :delete, data: {confirm: "Are you sure?"} %>
+      </li>
+    <% end %>
+  </ul>
+</div>

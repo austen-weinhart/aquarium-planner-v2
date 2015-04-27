@@ -2,10 +2,14 @@ Rails.application.routes.draw do
   root 'static_pages#home'
   get 'static_pages/home'
   get "fish/:id" => "fishes#show", as: :fish
+  get "fish" => "fishes#index"
   get "users" => "users#index"
   get "signup" => "users#new"
   post "users" => "users#create"
   get "user/:id" => "users#show"
+  get "user/:id/edit" => "users#edit", as: :edit_user
+  patch "user/:id" => "users#update"
+  delete "user/:id" => "users#destroy"
 
   get "plan" => "aquaria#new", as: :new_aquarium
   get "aquaria" => "aquaria#index"

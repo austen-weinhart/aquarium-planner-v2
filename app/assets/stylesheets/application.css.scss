@@ -25,12 +25,12 @@ body {
 }
 
 nav {
-  background: rgba(0,0,0,0.5);
-  padding: 10px 10px 10px 20px;
+  background: rgba(255, 255, 255, 0.75);
 }
 
 ul {
   list-style-type: none;
+  padding-left: 0;
 }
 
 .big {
@@ -38,10 +38,15 @@ ul {
   background: rgba(255, 255, 255, 0.75);
   /* border: 1px solid black; */
   margin: 20px 20px 10px 20px;
+  padding: 20px;
 }
 
 .label_box {
   display: block;
+}
+
+.showheader {
+  margin-left: 20px;
 }
 
 .jumbotron {
